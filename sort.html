@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>Untitled Document</title>
+</head>
+<script>
+    function sort()
+    {
+       
+        var temp;
+        var swap = 0 ;
+        var output = "";
+        var outputtotal = "";
+        var temparray = "";
+        var intarray = [];
+        var chr = "";
+        var angka = "";
+        var i = 0 ;
+        var kiri = 0 ;
+        var kanan = 0 ;
+        (document.getElementById("bilangan").value) = (document.getElementById("bilangan").value) + " ";
+
+        for (i = 0 ; i <= ((document.getElementById("bilangan").value).length); i++)
+        {    
+            
+            chr = (document.getElementById("bilangan").value).substring(i,1+i);
+           
+            
+            if (chr == " ")
+            {
+                if (angka != "")
+                intarray.push(angka);
+                angka = "";
+                
+               
+            }
+            else
+            {
+                angka = angka.concat(chr);
+               
+            }
+           
+            
+        }
+       
+
+       for (var j = 0; j < intarray.length; j++) {
+            var swapped = false;
+            i = 0 ;
+           
+            while (i < intarray.length - 1 )
+            {
+                 kiri = parseInt(intarray[i]);
+                 kanan = parseInt(intarray[i+1]);
+                if (kiri > kanan) {
+                    
+					output = (swap + 1).toString(10) + ". ";
+                    
+                    
+					temparray = "";
+					output = output + "[ " + (intarray[i + 1]).toString(10) + " , " + (intarray[i]).toString(10) + " ] ->";
+                    
+                   
+					temp = intarray[i];
+					intarray[i] = intarray[i + 1];
+					intarray[i + 1] = temp;
+
+					swapped = true;
+					for (var x = 0; x < intarray.length; x++)
+						temparray = temparray + " " + (intarray[x]).toString(10);
+					output = output + temparray + "<br>";
+					swap++;
+					outputtotal = outputtotal + output;
+                   
+                    i = 0;
+				}
+				i++;
+            }
+            if (!swapped) 
+				break;
+       }
+       (document.getElementById("output").innerHTML) = outputtotal + "<br>" + "Jumlah swap: " + swap;;
+    }
+</script>
+<body>
+<input name="bilangan" type="text" id = bilangan>&nbsp;
+<input name="Urutkan" type="button" onclick="sort()" value="Sort">
+<p id = "output"></p>
+</body>
+</html>
